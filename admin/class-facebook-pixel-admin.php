@@ -31,6 +31,11 @@ class Facebook_Pixel_Admin {
 	 */
 	private $plugin_name;
 
+    /**
+     * Holds the values to be used in the fields callbacks
+     */
+    private $options;
+
 	/**
 	 * The version of this plugin.
 	 *
@@ -100,4 +105,103 @@ class Facebook_Pixel_Admin {
 
 	}
 
+    /**
+     * Register the administration menu for this plugin into the WordPress Dashboard menu.
+     *
+     * @since    1.0.0
+     */
+
+    public function add_plugin_admin_menu() {
+
+        /*
+         * Add a settings page for this plugin to the Settings menu.
+         *
+         * NOTE:  Alternative menu locations are available via WordPress administration menu functions.
+         *
+         *        Administration Menus: http://codex.wordpress.org/Administration_Menus
+         *
+         */
+        add_menu_page( 'Facebook Pixel', 'Facebook Pixel', 'manage_options', 'pixel-setting', array($this, 'display_plugin_setup_page'));
+    }
+
+     /**
+     * Add settings action link to the plugins page.
+     *
+     * @since    1.0.0
+     */
+
+    public function add_action_links( $links ) {
+        /*
+        *  Documentation : https://codex.wordpress.org/Plugin_API/Filter_Reference/plugin_action_links_(plugin_file_name)
+        */
+       $settings_link = array(
+        '<a href="' . admin_url( 'options-general.php?page=' . $this->plugin_name ) . '">' . __('Settings', $this->plugin_name) . '</a>',
+       );
+       return array_merge(  $settings_link, $links );
+
+    }
+
+    /**
+     * Render the settings page for this plugin.
+     *
+     * @since    1.0.0
+     */
+
+    public function display_plugin_setup_page() {
+        include_once( 'partials/facebook-pixel-admin-display.php' );
+    }
+
+	/**
+	 * Register all related settings of this plugin
+	 *
+	 * @since  1.0.0
+	 */
+	public function register_setting() {
+        register_setting(
+            'pixel-group', // Option group
+            'pixel-options', // Option name
+            array( $this, 'sanitize' ) // Sanitize
+        );
+
+        add_settings_section(
+            'section_id', // ID
+            '', // Title
+            '', // Callback
+            'pixel-setting' // Page
+        );
+
+        add_settings_field(
+            'pixel_id',
+            'Pixel ID',
+            array( $this, 'facebook_pixel_id_cb' ),
+            'pixel-setting',
+            'section_id'
+        );
+	}
+
+    /**
+	 * Render the treshold day input for this plugin
+	 *
+	 * @since  1.0.0
+	 */
+	public function facebook_pixel_id_cb() {
+        printf(
+            '<input type="text" id="pixel_id" name="pixel-options[pixel_id]" value="%s" />',
+            isset( $this->options['pixel_id'] ) ? esc_attr( $this->options['pixel_id']) : ''
+        );
+	}
+
+    /**
+     * Sanitize each setting field as needed
+     *
+     * @param array $input Contains all settings fields as array keys
+     */
+    public function sanitize( $input )
+    {
+        $new_input = array();
+        if( isset( $input['pixel_id'] ) )
+            $new_input['pixel_id'] = sanitize_text_field( $input['pixel_id'] );
+
+        return $new_input;
+    }
 }
