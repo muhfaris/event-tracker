@@ -196,12 +196,20 @@ class Facebook_Pixel_Admin {
      *
      * @param array $input Contains all settings fields as array keys
      */
-    public function sanitize( $input )
-    {
+    public function sanitize( $input ) {
         $new_input = array();
         if( isset( $input['pixel_id'] ) )
             $new_input['pixel_id'] = sanitize_text_field( $input['pixel_id'] );
 
         return $new_input;
+    }
+
+    /**
+     * facebook_pixel_setting_errors
+     *
+     * @since  1.0.0
+     */
+    public function facebook_pixel_setting_errors(){
+        settings_errors();
     }
 }

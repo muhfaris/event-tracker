@@ -17,7 +17,6 @@
 <div class="wrap">
     <?php
         $this->options = get_option( 'pixel-options' );
-        settings_errors();
     ?>
     <h2><?php echo esc_html(get_admin_page_title()); ?></h2>
     <form method="post" name="fbpixel_options" action="options.php">

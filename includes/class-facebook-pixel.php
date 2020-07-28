@@ -161,6 +161,9 @@ class Facebook_Pixel {
 
         // Save/Update our plugin options
         $this->loader->add_action('admin_init', $plugin_admin, 'register_setting');
+
+        // notification
+        $this->loader->add_action('admin_notices',$plugin_admin, 'facebook_pixel_setting_errors');
 	}
 
 	/**
