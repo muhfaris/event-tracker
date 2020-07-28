@@ -159,7 +159,7 @@ class Facebook_Pixel_Admin {
 	public function register_setting() {
         register_setting(
             'pixel-group', // Option group
-            'pixel-options', // Option name
+            'mfa-pixel-options', // Option name
             array( $this, 'sanitize' ) // Sanitize
         );
 
@@ -186,7 +186,7 @@ class Facebook_Pixel_Admin {
 	 */
 	public function facebook_pixel_id_cb() {
         printf(
-            '<input type="text" id="pixel_id" name="pixel-options[pixel_id]" value="%s" />',
+            '<input type="text" id="pixel_id" name="mfa-pixel-options[pixel_id]" value="%s" />',
             isset( $this->options['pixel_id'] ) ? esc_attr( $this->options['pixel_id']) : ''
         );
 	}
