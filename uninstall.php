@@ -29,3 +29,12 @@
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
+
+//define a vairbale and store an option name as the value.
+$option_name = 'mfa-pixel-options';
+
+//call delete option and use the vairable inside the quotations
+delete_option($option_name);
+
+// for site options in Multisite
+delete_site_option($option_name);
