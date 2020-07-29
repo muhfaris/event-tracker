@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Facebook Pixel
  * Plugin URI:        https://github.com/muhfaris/facebook-pixel
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       This plugin help you to install Facebook Pixel to your site. Just copy and paste your Pixel ID to plugin setting.
  * Version:           1.0.0
  * Author:            Muh Faris
  * Author URI:        https://github.com/muhfaris

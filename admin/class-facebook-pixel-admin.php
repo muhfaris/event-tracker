@@ -45,6 +45,13 @@ class Facebook_Pixel_Admin {
 	 */
 	private $version;
 
+    /**
+     * The author
+     * @var string
+     */
+    protected $author;
+
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -52,10 +59,11 @@ class Facebook_Pixel_Admin {
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct( $plugin_name, $version, $author ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+        $this->author = $author;
 
 	}
 
@@ -121,7 +129,7 @@ class Facebook_Pixel_Admin {
          *        Administration Menus: http://codex.wordpress.org/Administration_Menus
          *
          */
-        add_menu_page( 'Facebook Pixel', 'Facebook Pixel', 'manage_options', 'pixel-setting', array($this, 'display_plugin_setup_page'));
+        add_menu_page( 'Facebook Pixel', 'Facebook Pixel', 'manage_options', 'fb-pixel-setting', array($this, 'display_plugin_setup_page'), 'dashicons-facebook-alt');
     }
 
      /**
@@ -166,29 +174,40 @@ class Facebook_Pixel_Admin {
         add_settings_section(
             'section_id', // ID
             '', // Title
-            '', // Callback
-            'pixel-setting' // Page
+            array( $this, 'section_cb' ), // Callback
+            'fb-pixel-setting' // Page
         );
 
         add_settings_field(
             'pixel_id',
             'Pixel ID',
             array( $this, 'facebook_pixel_id_cb' ),
-            'pixel-setting',
+            'fb-pixel-setting',
             'section_id'
         );
 	}
 
+     /**
+	 * Render the section for this plugin
+	 *
+	 * @since  1.0.0
+	 */
+	public function section_cb() {
+        echo "v".$this->version. " author by ".$this->author;
+	}
+
+
     /**
-	 * Render the treshold day input for this plugin
+	 * Render the input for this plugin
 	 *
 	 * @since  1.0.0
 	 */
 	public function facebook_pixel_id_cb() {
         printf(
-            '<input type="text" id="pixel_id" name="mfa-pixel-options[pixel_id]" value="%s" />',
+            '<input type="text" id="pixel_id" name="mfa-pixel-options[pixel_id]" pattern="[0-9]+" value="%s" />',
             isset( $this->options['pixel_id'] ) ? esc_attr( $this->options['pixel_id']) : ''
         );
+        echo '<p class="description" id="pixel-id-description">enter facebook pixel ID.</p>';
 	}
 
     /**
@@ -197,9 +216,14 @@ class Facebook_Pixel_Admin {
      * @param array $input Contains all settings fields as array keys
      */
     public function sanitize( $input ) {
+        $errors = new WP_Error();
         $new_input = array();
+        if (isset($input[ 'pixel_id' ]) && $input[ 'pixel_id' ] == '') {
+            $errors->add('pixel_id_error', 'Please fill in a valid pixel id.');
+        }
+
         if( isset( $input['pixel_id'] ) )
-            $new_input['pixel_id'] = sanitize_text_field( $input['pixel_id'] );
+            $new_input['pixel_id'] = absint( $input['pixel_id'] );
 
         return $new_input;
     }
@@ -211,5 +235,29 @@ class Facebook_Pixel_Admin {
      */
     public function facebook_pixel_setting_errors(){
         settings_errors();
+    }
+
+    public function facebook_pixel_js(){
+        $this->options = get_option( 'pixel-options' );
+        echo $this->options['pixel_id'];
+        ?>
+        <!-- Facebook Pixel Code -->
+        <script>
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', <?php $this->options['pixel_id']?>);
+          fbq('track', 'PageView');
+        </script>
+        <noscript>
+          <img height="1" width="1" style="display:none"
+          src="https://www.facebook.com/tr?id=<?php $this->options['pixel_id']?>&ev=PageView&noscript=1"/>
+        </noscript>
+<!-- End Facebook Pixel Code -->        <?php
     }
 }

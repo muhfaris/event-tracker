@@ -57,6 +57,12 @@ class Facebook_Pixel {
 	 */
 	protected $version;
 
+    /**
+     * The author
+     * @var string
+     */
+    protected $author;
+
 	/**
 	 * Define the core functionality of the plugin.
 	 *
@@ -73,6 +79,7 @@ class Facebook_Pixel {
 			$this->version = '1.0.0';
 		}
 		$this->plugin_name = 'facebook-pixel';
+        $this->author      = 'muhfaris';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -151,7 +158,7 @@ class Facebook_Pixel {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Facebook_Pixel_Admin( $this->get_plugin_name(), $this->get_version() );
+        $plugin_admin = new Facebook_Pixel_Admin( $this->get_plugin_name(), $this->get_version(), $this->get_author() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -160,11 +167,13 @@ class Facebook_Pixel {
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
 
         // Save/Update our plugin options
-        $this->loader->add_action('admin_init', $plugin_admin, 'register_setting');
+        $this->loader->add_action( 'admin_init', $plugin_admin, 'register_setting' );
 
         // notification
-        $this->loader->add_action('admin_notices',$plugin_admin, 'facebook_pixel_setting_errors');
-	}
+        $this->loader->add_action( 'admin_notices', $plugin_admin, 'facebook_pixel_setting_errors' );
+
+        $this->loader->add_action( 'wp_footer', $plugin_admin,  'facebook_pixel_js' );
+    }
 
 	/**
 	 * Register all of the hooks related to the public-facing functionality
@@ -222,4 +231,13 @@ class Facebook_Pixel {
 		return $this->version;
 	}
 
+	/**
+	 * Retrieve the author string of the plugin.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The version number of the plugin.
+	 */
+	public function get_author() {
+		return $this->author;
+	}
 }
