@@ -13,7 +13,7 @@
  * @package           Facebook_Pixel
  *
  * @wordpress-plugin
- * Plugin Name:       Facebook Pixel
+ * Plugin Name:       Ads Pixel
  * Plugin URI:        https://github.com/muhfaris/facebook-pixel
  * Description:       This plugin help you to install Facebook Pixel to your site. Just copy and paste your Pixel ID to plugin setting.
  * Version:           1.0.0
