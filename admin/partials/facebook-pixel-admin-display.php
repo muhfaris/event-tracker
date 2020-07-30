@@ -22,7 +22,7 @@
     <form method="post" name="fbpixel_options" action="options.php">
         <!-- load jQuery from CDN -->
         <?php settings_fields('pixel-group')?>
-        <?php do_settings_sections('fb-pixel-setting')?>
+        <?php do_settings_sections('event-tracker-setting')?>
         <?php submit_button(); ?>
 
     </form>
