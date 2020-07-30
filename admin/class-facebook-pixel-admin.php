@@ -238,7 +238,7 @@ class Facebook_Pixel_Admin {
     }
 
     public function facebook_pixel_js(){
-        $this->options = get_option( 'pixel-options' );
+        $this->options = get_option( 'mfa-pixel-options' );
         echo $this->options['pixel_id'];
         ?>
         <!-- Facebook Pixel Code -->
