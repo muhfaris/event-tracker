@@ -38,7 +38,15 @@ It also works great with WP 3.2 - and also should with WP 3.1 - but we only test
 
 == Screenshots ==
 1. Event Tracker Menu
+2. Check with Facebook Pixel Helper
 
 == Changelog ==
-1.0 (30.07.2020)
-Plugin init
+1.0.1 (30.07.2020)
+* Change base code name
+
+1.0.0 (30.07.2020)
+* Plugin init
+
+== Upgrade Notice ==
+1.0.1 (30.07.2020)
+* Fix trademark issue with facebook
