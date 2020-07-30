@@ -129,7 +129,7 @@ class Facebook_Pixel_Admin {
          *        Administration Menus: http://codex.wordpress.org/Administration_Menus
          *
          */
-        add_menu_page( 'Facebook Pixel', 'Facebook Pixel', 'manage_options', 'fb-pixel-setting', array($this, 'display_plugin_setup_page'), 'dashicons-facebook-alt');
+        add_menu_page( 'Event Tracker', 'Event Tracker', 'manage_options', 'event-tracker-setting', array($this, 'display_plugin_setup_page'), 'dashicons-facebook-alt');
     }
 
      /**
@@ -175,14 +175,14 @@ class Facebook_Pixel_Admin {
             'section_id', // ID
             '', // Title
             array( $this, 'section_cb' ), // Callback
-            'fb-pixel-setting' // Page
+            'event-tracker-setting' // Page
         );
 
         add_settings_field(
             'pixel_id',
             'Pixel ID',
             array( $this, 'facebook_pixel_id_cb' ),
-            'fb-pixel-setting',
+            'event-tracker-setting',
             'section_id'
         );
 	}

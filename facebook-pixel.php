@@ -10,18 +10,18 @@
  *
  * @link              https://github.com/muhfaris
  * @since             1.0.0
- * @package           Facebook_Pixel
+ * @package           Event_Tracker
  *
  * @wordpress-plugin
- * Plugin Name:       Ads Pixel
- * Plugin URI:        https://github.com/muhfaris/facebook-pixel
- * Description:       This plugin help you to install Facebook Pixel to your site. Just copy and paste your Pixel ID to plugin setting.
+ * Plugin Name:       Event Tracker
+ * Plugin URI:        https://github.com/muhfaris/event-tracker
+ * Description:       This plugin help you to install Facebook Pixel to your site. Just copy Your pixel ID and paste to plugin setting.
  * Version:           1.0.0
  * Author:            Muh Faris
  * Author URI:        https://github.com/muhfaris
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       facebook-pixel
+ * Text Domain:       event-tracker
  * Domain Path:       /languages
  */
 
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'FACEBOOK_PIXEL_VERSION', '1.0.0' );
+define( 'EVENT_TRACKER_VERSION', '1.0.0' );
 
 /**
  * The code that runs during plugin activation.

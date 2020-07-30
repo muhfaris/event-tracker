@@ -73,8 +73,8 @@ class Facebook_Pixel {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'FACEBOOK_PIXEL_VERSION' ) ) {
-			$this->version = FACEBOOK_PIXEL_VERSION;
+		if ( defined( 'EVENT_TRACKER_VERSION' ) ) {
+			$this->version = EVENT_TRACKER_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
