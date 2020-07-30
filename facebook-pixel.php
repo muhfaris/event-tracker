@@ -14,14 +14,14 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Event Tracker
- * Plugin URI:        https://github.com/muhfaris/event-tracker
+ * Plugin URI:        https://github.com/muhfaris/events-tracker
  * Description:       This plugin help you to install Facebook Pixel to your site. Just copy Your pixel ID and paste to plugin setting.
  * Version:           1.0.0
  * Author:            Muh Faris
  * Author URI:        https://github.com/muhfaris
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       event-tracker
+ * Text Domain:       events-tracker
  * Domain Path:       /languages
  */
 
