@@ -1,7 +1,7 @@
 === Event Tracker ===
 Contributors: muhfaris
 Tags: facebook, pixel, advertise, event tracker
-Donate link: https://saweria.co/donate/muhfaris
+Donate link: https://www.paypal.com/paypalme/farisafif
 Requires at least: 3.2
 Tested up to: 5.4
 Requires PHP: 5.2
