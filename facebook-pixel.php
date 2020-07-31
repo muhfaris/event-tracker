@@ -13,7 +13,7 @@
  * @package           Event_Tracker
  *
  * @wordpress-plugin
- * Plugin Name:       Event Tracker
+ * Plugin Name:       Events Tracker
  * Plugin URI:        https://github.com/muhfaris/events-tracker
  * Description:       This plugin help you to install Facebook Pixel to your site. Just copy Your pixel ID and paste to plugin setting.
  * Version:           1.0.0

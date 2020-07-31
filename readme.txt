@@ -1,4 +1,4 @@
-=== Event Tracker ===
+=== Events Tracker ===
 Contributors: muhfaris
 Tags: facebook, pixel, advertise, event tracker
 Donate link: https://www.paypal.com/paypalme/farisafif
@@ -11,7 +11,7 @@ This plugin adds useful setting for you to setup Facebook Pixel.
 
 
 == Description ==
-Event Tracker simple but extremely useful that allows you to track events and conversions on your website.
+Events Tracker simple but extremely useful that allows you to track events and conversions on your website.
 
 == Installation ==
 INSTALLING FROM THE WORDPRESS CONTROL PANEL
@@ -37,7 +37,7 @@ Yes, this plugin works really fine with WordPress 5.4!
 It also works great with WP 3.2 - and also should with WP 3.1 - but we only tested extensively with WP 3.3 and 3.2. So you always should run the latest WordPress version for a lot of reasons.
 
 == Screenshots ==
-1. Event Tracker Menu
+1. Events Tracker Menu
 2. Check with Facebook Pixel Helper
 
 == Changelog ==
