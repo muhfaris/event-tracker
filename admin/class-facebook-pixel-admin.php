@@ -174,7 +174,7 @@ class Facebook_Pixel_Admin {
         add_settings_section(
             'section_id', // ID
             '', // Title
-            array( $this, 'section_cb' ), // Callback
+            '', // Callback
             'events-tracker-setting' // Page
         );
 
@@ -186,16 +186,6 @@ class Facebook_Pixel_Admin {
             'section_id'
         );
 	}
-
-     /**
-	 * Render the section for this plugin
-	 *
-	 * @since  1.0.0
-	 */
-	public function section_cb() {
-        echo "v".$this->version. " author by ".$this->author;
-	}
-
 
     /**
 	 * Render the input for this plugin
